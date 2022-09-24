@@ -32,7 +32,9 @@ public class P8WrongMeasurements {
         }
 
         for (int[] correctValue : correntValues) {
-            matrix[correctValue[0]][correctValue[1]] = correctValue[2];
+            int row = correctValue[0];
+            int col = correctValue[1];
+            matrix[row][col] = correctValue[2];
         }
 
         for (int[] arr : matrix) {
