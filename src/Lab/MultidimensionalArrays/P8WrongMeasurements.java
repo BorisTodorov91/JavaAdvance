@@ -1,6 +1,8 @@
 package Lab.MultidimensionalArrays;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class P8WrongMeasurements {
@@ -19,15 +21,19 @@ public class P8WrongMeasurements {
 
         int valueToReplace = matrix[indexes[0]][indexes[1]];
 
+        List<int[]> correntValues = new ArrayList<>();
         for (int r = 0; r < matrix.length; r++) {
             for (int c = 0; c < matrix[r].length; c++) {
                 if (matrix[r][c] == valueToReplace) {
                     int correctValue = getNearbySum(matrix, r, c, valueToReplace);
-                    matrix[r][c] = correctValue;
+                    correntValues.add(new int[]{r, c, correctValue});
                 }
             }
         }
 
+        for (int[] correctValue : correntValues) {
+            matrix[correctValue[0]][correctValue[1]] = correctValue[2];
+        }
 
         for (int[] arr : matrix) {
             for (int n : arr) {
@@ -54,19 +60,19 @@ public class P8WrongMeasurements {
           [2][0]      [2][1]      [2][2]
          */
 
-        if (isInBounds(r + 1, c, matrix)) {
+        if (isInBounds(r + 1, c, matrix) && matrix[r + 1][c] != valueToReplace) {
             //up
             sum += matrix[r + 1][c];
         }
-        if (isInBounds(r - 1, c, matrix)) {
+        if (isInBounds(r - 1, c, matrix) && matrix[r - 1][c] != valueToReplace) {
             //down
             sum += matrix[r - 1][c];
         }
-        if (isInBounds(r, c + 1, matrix)) {
+        if (isInBounds(r, c + 1, matrix) && matrix[r][c + 1] != valueToReplace) {
             //right
             sum += matrix[r][c + 1];
         }
-        if (isInBounds(r, c - 1, matrix)) {
+        if (isInBounds(r, c - 1, matrix) && matrix[r][c - 1] != valueToReplace) {
             //left
             sum += matrix[r][c - 1];
         }
