@@ -33,6 +33,10 @@ public class P01FillTheMatrix {
             paternB(n, counter, matrix);
         }
 
+        printMatrix(matrix);
+    }
+
+    private static void printMatrix(int[][] matrix) {
         for (int[] element : matrix) {
             for (int item : element) {
                 System.out.print(item + " ");
