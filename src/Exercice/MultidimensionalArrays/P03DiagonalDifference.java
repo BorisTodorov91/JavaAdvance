@@ -33,6 +33,10 @@ public class P03DiagonalDifference {
     }
 
     private static int getSecondaryDiagonal(int size, int[][] matrix, int secondaryDiagonal) {
+
+        // [0][2]
+        // [1][1]
+        // [2][0]
         //rows--
         //cols++
         for (int row = size - 1, col = 0; col < size && row >= 0; row--, col++) {
@@ -42,6 +46,11 @@ public class P03DiagonalDifference {
     }
 
     private static int getPrimaryDiagonal(int[][] matrix, int primaryDiagonal) {
+         /*
+            [0][0]
+            [1][1]
+            [2][2]
+         */
         for (int row = 0; row < matrix.length; row++) {
             for (int col = 0; col < matrix[row].length; col++) {
 
