@@ -30,7 +30,7 @@ public class P04MaximalSum {
                                 matrix[row + 1][col] + matrix[row + 1][col + 1] + matrix[row + 1][col + 2]
                                 // 2 0                 2 1                     2 2
                                 + matrix[row + 2][col] + matrix[row + 2][col + 1] + matrix[row + 2][col + 2];
-                //!vazno
+                                                       //!vazno
                 /*for (int currentRow = 0; currentRow < row + 3; currentRow++) {
                                                          //!vazno
                     for (int currentCol = 0; currentCol < col + 3; currentCol++) {
