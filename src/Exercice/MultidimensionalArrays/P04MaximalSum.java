@@ -27,9 +27,9 @@ public class P04MaximalSum {
                         // 0 0                 0 1                     0 2
                         matrix[row][col] + matrix[row][col + 1] + matrix[row][col + 2] +
                                 // 1 0               //1 1                     1 2
-                                matrix[row + 1][col] + matrix[row + 1][col + 1] + matrix[row + 1][col + 2]
+                                matrix[row + 1][col] + matrix[row + 1][col + 1] + matrix[row + 1][col + 2] +
                                 // 2 0                 2 1                     2 2
-                                + matrix[row + 2][col] + matrix[row + 2][col + 1] + matrix[row + 2][col + 2];
+                                matrix[row + 2][col] + matrix[row + 2][col + 1] + matrix[row + 2][col + 2];
                                                        //!vazno
                 /*for (int currentRow = 0; currentRow < row + 3; currentRow++) {
                                                          //!vazno
