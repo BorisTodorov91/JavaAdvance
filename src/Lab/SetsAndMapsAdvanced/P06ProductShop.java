@@ -33,6 +33,8 @@ public class P06ProductShop {
             System.out.printf("%s->%n", entry.getKey());
             for (Map.Entry<String, Double> stringEntry : entry.getValue().entrySet()) {
                 System.out.printf("Product: %s, Price: %.1f%n", stringEntry.getKey(), stringEntry.getValue());
+
+
             }
         }
     }
