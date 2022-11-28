@@ -8,8 +8,7 @@ public class sumNum {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-
-        Function<int[], String> sum = element -> "" + Arrays.stream(element).sum();
+      Function<int[], String> sum = element -> "" + Arrays.stream(element).sum();
 
         int[] array = Arrays.stream(scanner.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
 
