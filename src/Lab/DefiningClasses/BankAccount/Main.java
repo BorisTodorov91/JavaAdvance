@@ -1,4 +1,4 @@
-package Lab.BankAccount;
+package Lab.DefiningClasses.BankAccount;
 
 import java.util.HashMap;
 import java.util.Map;
