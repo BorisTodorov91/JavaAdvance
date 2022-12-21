@@ -17,12 +17,12 @@ public class Main {
             String[] tokens = command.split("\\s+");
 
             switch (tokens[0]) {
-                case "Create":
+                case "Create" -> {
                     BankAccount bankAccount = new BankAccount();
                     bankAccounts.put(bankAccount.getId(), bankAccount);
                     System.out.printf("Account ID%d created%n", bankAccount.getId());
-                    break;
-                case "Deposit":
+                }
+                case "Deposit" -> {
                     int id = Integer.parseInt(tokens[1]);
                     double amount = Double.parseDouble(tokens[2]);
                     if (doesExist(id, bankAccounts)) {
@@ -31,12 +31,12 @@ public class Main {
                     } else {
                         System.out.println("Account does not exist");
                     }
-                    break;
-                case "SetInterest":
+                }
+                case "SetInterest" -> {
                     double newInterestRate = Double.parseDouble(tokens[1]);
                     BankAccount.setInterestRate(newInterestRate);
-                    break;
-                case "GetInterest":
+                }
+                case "GetInterest" -> {
                     int accountId = Integer.parseInt(tokens[1]);
                     int years = Integer.parseInt(tokens[2]);
                     if (doesExist(accountId, bankAccounts)) {
@@ -45,7 +45,8 @@ public class Main {
                         System.out.println("Account does not exist");
 
                     }
-                    break;
+                }
+                default -> throw new IllegalStateException("Unexpected value: " + tokens[0]);
             }
 
             command = scanner.nextLine();
