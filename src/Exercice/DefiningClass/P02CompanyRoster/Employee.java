@@ -17,6 +17,11 @@ public class Employee {
         this.age = age;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s %.2f %s %d", name, salary, email, age);
+    }
+
     public Employee(String name, double salary, String position, String department) {
         this(name, salary, position, department, "n/a", -1);
     }

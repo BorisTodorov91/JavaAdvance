@@ -1,6 +1,7 @@
 package Exercice.DefiningClass.P02CompanyRoster;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -63,7 +64,18 @@ public class Main {
 
         }
 
+        Departments hightsPaidDepartmanets =
+                departmentsList
+                        .stream()
+                        .max(Comparator.comparingDouble(Departments::calculateAverageSalary))
+                        .get();
 
-        System.out.println();
+
+        System.out.printf("Highest Average Salary: %s%n", hightsPaidDepartmanets.getName());
+
+        hightsPaidDepartmanets.getEmployeeList()
+                .stream()
+                .sorted((first, second) -> Double.compare(second.getSalary(), first.getSalary()))
+                .forEach(System.out::println);
     }
 }
