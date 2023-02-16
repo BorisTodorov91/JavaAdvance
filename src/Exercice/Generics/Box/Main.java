@@ -7,19 +7,20 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         int n = Integer.parseInt(scanner.nextLine());
-        Box<Integer> stringBox = new Box<>();
+        Box<String> stringBox = new Box<>();
 
         for (int i = 0; i < n; i++) {
-            Integer commnd = Integer.parseInt(scanner.nextLine());
+            String commnd = scanner.nextLine();
             stringBox.add(commnd);
         }
-        String[] command = scanner.nextLine().split(" ");
+//        String[] command = scanner.nextLine().split(" ");
+//
+//        int firstIndex = Integer.parseInt(command[0]);
+//        int secondIndex = Integer.parseInt(command[1]);
+//
+//        stringBox.swap(firstIndex, secondIndex);
 
-        int firstIndex = Integer.parseInt(command[0]);
-        int secondIndex = Integer.parseInt(command[1]);
-
-        stringBox.swap(firstIndex, secondIndex);
-
-        System.out.println(stringBox);
+        String elementForCompare = scanner.nextLine();
+        System.out.println(stringBox.countOfGreaterItem(elementForCompare));
     }
 }
