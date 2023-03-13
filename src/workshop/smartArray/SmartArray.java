@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023 Boris T.
+ */
+
 package workshop.smartArray;
 
 import java.util.function.Consumer;
@@ -10,7 +14,7 @@ public class SmartArray {
 
     public SmartArray() {
         this.size = 0;
-        this.data = new int[2];
+        this.data = new int[4];
     }
 
     private int[] grow() {
@@ -23,6 +27,15 @@ public class SmartArray {
         System.arraycopy(data, 0, newData, 0, data.length); // native method - изпълнява се на по ниско ниво
 
         return newData;
+    }
+
+    private int[] shrink() {
+        int newLength = data.length / 2;
+        int[] newData = new int[newLength];
+
+        System.arraycopy(data, 0, newData, 0, size);
+        return newData;
+
     }
 
     private void ensureIndex(int index) {
@@ -56,9 +69,13 @@ public class SmartArray {
         data[size - 1] = 0;
 
         size--;
+        if (size == data.length / 2) {
+            data = shrink();
+        }
         return removedElement;
 
     }
+
 
     public boolean contain(int element) {
 

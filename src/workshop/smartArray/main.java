@@ -1,25 +1,24 @@
+/*
+ * Copyright (c) 2023 Boris T.
+ */
+
 package workshop.smartArray;
 
 public class main {
     public static void main(String[] args) {
 
-
         SmartArray smartArray = new SmartArray();
         smartArray.add(13);
         smartArray.add(42);
         smartArray.add(73);
+        smartArray.add(69);
         smartArray.add(23);
-
-        System.out.println(smartArray.remove(1));
-
-        System.out.println(smartArray.contain(73));
-        System.out.println(smartArray.contain(42));
-        smartArray.add(2, 56);
-
+        smartArray.remove(2);
         System.out.println();
 
         smartArray.forEach(System.out::println);
 
         System.out.println();
+
     }
 }
