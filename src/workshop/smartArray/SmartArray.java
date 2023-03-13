@@ -1,5 +1,7 @@
 package workshop.smartArray;
 
+import java.util.function.Consumer;
+
 public class SmartArray {
 
     private int[] data;
@@ -69,4 +71,27 @@ public class SmartArray {
         return false;
     }
 
+    public void add(int index, int element) {
+
+        int lasElement = data[size - 1];
+
+        /*
+        for (int i = size - 1; i > index ; i--) {
+            data[i] = data[i - 1];
+        }
+        */
+
+        if (size - 1 - index >= 0) {
+            System.arraycopy(data, index, data, index + 1, size - 1 - index);
+        }
+
+        data[index] = element;
+        add(lasElement);
+    }
+
+    public void forEach(Consumer<Integer> consumer) {
+        for (int i = 0; i < size; i++) {
+            consumer.accept(data[i]);
+        }
+    }
 }

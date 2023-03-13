@@ -14,11 +14,11 @@ public class main {
 
         System.out.println(smartArray.contain(73));
         System.out.println(smartArray.contain(42));
+        smartArray.add(2, 56);
+
         System.out.println();
 
-        for (int i = 0; i < smartArray.size(); i++) {
-            System.out.println(smartArray.get(i));
-        }
+        smartArray.forEach(System.out::println);
 
         System.out.println();
     }
