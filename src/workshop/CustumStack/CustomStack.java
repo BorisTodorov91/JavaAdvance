@@ -14,7 +14,18 @@ import java.util.function.Consumer;
 
 public class CustomStack {
 
+    private static class Node {
+        private final int element;
+        private Node prev;
+
+        private Node(int element, Node prev) {
+            this.element = element;
+            this.prev = prev;
+        }
+    }
+
     private Node top;
+
     private int size;
 
     public void push(int element) {
@@ -50,16 +61,6 @@ public class CustomStack {
     private void ensureNotEmpty() {
         if (top == null) {
             throw new IllegalArgumentException("Stack is empty!");
-        }
-    }
-
-    private static class Node {
-        private final int element;
-        private Node prev;
-
-        private Node(int element, Node prev) {
-            this.element = element;
-            this.prev = prev;
         }
     }
 }
