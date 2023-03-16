@@ -6,8 +6,9 @@ package workshop.LinkedList;
 
 import java.util.function.Consumer;
 
-public class LinkedList {
+public class LinkedListTail {
     private Node head;
+    private Node tail;
     private int size;
 
     public void addFirst(int element) {
@@ -16,6 +17,8 @@ public class LinkedList {
         //2. head = newNode
         if (!isEmpty()) {
             newNode.next = head;
+        } else {
+            tail = newNode;
         }
         head = newNode;
         //3. size++
@@ -29,11 +32,8 @@ public class LinkedList {
             return;
         }
         Node newNode = new Node(element);
-        Node currentNode = head;
-        while (currentNode.next != null) {
-            currentNode = currentNode.next;
-        }
-        currentNode.next = newNode;
+        tail.next = newNode;
+        tail = newNode;
         size++;
 
     }
@@ -44,8 +44,12 @@ public class LinkedList {
         }
         int result = head.value;
 
-        head = head.next;
         size--;
+        if (isEmpty()) {
+            head = null;
+            tail = null;
+
+        }
         return result;
 
     }
@@ -61,6 +65,7 @@ public class LinkedList {
         }
         int result = currentNode.next.value; // взимаме стойноста на последноя ноде
         currentNode.next = null;
+        tail = currentNode;
         size--;
 
         return result; // върщаме стойноста на премахнатияноде

@@ -8,13 +8,29 @@ public class main {
     public static void main(String[] args) {
 
 
-        LinkedList list = new LinkedList();
+      DoublyLinkedList doublyLinkedList = new DoublyLinkedList();
+      doublyLinkedList.addLast(1);
+      doublyLinkedList.addLast(2);
+      doublyLinkedList.addLast(3);
+      doublyLinkedList.addLast(4);
+      doublyLinkedList.addLast(5);
+      doublyLinkedList.addLast(6);
+      doublyLinkedList.addLast(7);
+      doublyLinkedList.addLast(8);
 
-        list.addLast(12);
-        list.removeLast();
+      System.out.println(doublyLinkedList.get(2));
+      System.out.println(doublyLinkedList.get(0));
+
+      System.out.println(doublyLinkedList.get(7));
+
+      for (int i : doublyLinkedList.toArr()) {
+        System.out.println(i);
+      }
 
 
-        list.forEach(System.out::println);
+      //doublyLinkedList.forEach(System.out::println);
+      System.out.println();
+
 
     }
 }

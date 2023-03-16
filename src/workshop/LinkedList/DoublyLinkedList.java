@@ -4,10 +4,13 @@
 
 package workshop.LinkedList;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
-public class LinkedList {
+public class DoublyLinkedList {
     private Node head;
+    private Node tail;
     private int size;
 
     public void addFirst(int element) {
@@ -16,6 +19,9 @@ public class LinkedList {
         //2. head = newNode
         if (!isEmpty()) {
             newNode.next = head;
+            head.prev = newNode;
+        } else {
+            tail = newNode;
         }
         head = newNode;
         //3. size++
@@ -29,11 +35,9 @@ public class LinkedList {
             return;
         }
         Node newNode = new Node(element);
-        Node currentNode = head;
-        while (currentNode.next != null) {
-            currentNode = currentNode.next;
-        }
-        currentNode.next = newNode;
+        newNode.prev = tail;
+        tail.next = newNode;
+        tail = newNode;
         size++;
 
     }
@@ -44,8 +48,16 @@ public class LinkedList {
         }
         int result = head.value;
 
-        head = head.next;
         size--;
+        head = head.next;
+        if (this.size > 1) {
+            head.prev = null;
+        }
+        if (isEmpty()) {
+            head = null;
+            tail = null;
+
+        }
         return result;
 
     }
@@ -55,15 +67,12 @@ public class LinkedList {
             return removeFirst();
         }
 
-        Node currentNode = head;
-        while (currentNode.next.next != null) {
-            currentNode = currentNode.next;// стигаме до предпоследния ноде
-        }
-        int result = currentNode.next.value; // взимаме стойноста на последноя ноде
-        currentNode.next = null;
-        size--;
+        int result = tail.value;
 
-        return result; // върщаме стойноста на премахнатияноде
+        tail = tail.prev;
+        tail.next = null;
+        this.size--;
+        return result;
 
 
     }
@@ -72,11 +81,22 @@ public class LinkedList {
         checkIndex(searchIndex);
 
         int currentIndex = 0;
-        Node currentNode = head;
+        Node currentNode;
+        if (searchIndex > size / 2) {
+            currentNode = tail;
+            int lastIndex = size - 1;
+            int countOfIteration = lastIndex - searchIndex;
+            for (int i = 0; i < countOfIteration; i++) {
+                currentNode = currentNode.prev;
+            }
+        } else {
 
-        while (currentIndex < searchIndex) {
-            currentNode = currentNode.next;
-            currentIndex++;
+            currentNode = head;
+            while (currentIndex < searchIndex) {
+                currentNode = currentNode.next;
+                currentIndex++;
+            }
+
         }
 
         return currentNode.value;
@@ -92,17 +112,10 @@ public class LinkedList {
     }
 
     public int[] toArr() {
-        int[] array = new int[size];
+        List<Integer> result = new ArrayList<>();
+        forEach(result::add);
 
-        int count = 0;
-        Node currentNode = head;
-        while (currentNode != null) {
-            array[count] = currentNode.value;
-            count++;
-            currentNode = currentNode.next;
-        }
-
-        return array;
+        return result.stream().mapToInt(e -> e).toArray();
     }
 
     private void checkIndex(int searchIndex) {
