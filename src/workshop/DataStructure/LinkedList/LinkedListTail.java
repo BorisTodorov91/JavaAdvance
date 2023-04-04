@@ -2,13 +2,11 @@
  * Copyright (c) 2023 Boris T.
  */
 
-package workshop.LinkedList;
+package workshop.DataStructure.LinkedList;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Consumer;
 
-public class DoublyLinkedList {
+public class LinkedListTail {
     private Node head;
     private Node tail;
     private int size;
@@ -19,7 +17,6 @@ public class DoublyLinkedList {
         //2. head = newNode
         if (!isEmpty()) {
             newNode.next = head;
-            head.prev = newNode;
         } else {
             tail = newNode;
         }
@@ -35,7 +32,6 @@ public class DoublyLinkedList {
             return;
         }
         Node newNode = new Node(element);
-        newNode.prev = tail;
         tail.next = newNode;
         tail = newNode;
         size++;
@@ -49,10 +45,6 @@ public class DoublyLinkedList {
         int result = head.value;
 
         size--;
-        head = head.next;
-        if (this.size > 1) {
-            head.prev = null;
-        }
         if (isEmpty()) {
             head = null;
             tail = null;
@@ -67,12 +59,16 @@ public class DoublyLinkedList {
             return removeFirst();
         }
 
-        int result = tail.value;
+        Node currentNode = head;
+        while (currentNode.next.next != null) {
+            currentNode = currentNode.next;// стигаме до предпоследния ноде
+        }
+        int result = currentNode.next.value; // взимаме стойноста на последноя ноде
+        currentNode.next = null;
+        tail = currentNode;
+        size--;
 
-        tail = tail.prev;
-        tail.next = null;
-        this.size--;
-        return result;
+        return result; // върщаме стойноста на премахнатияноде
 
 
     }
@@ -81,22 +77,11 @@ public class DoublyLinkedList {
         checkIndex(searchIndex);
 
         int currentIndex = 0;
-        Node currentNode;
-        if (searchIndex > size / 2) {
-            currentNode = tail;
-            int lastIndex = size - 1;
-            int countOfIteration = lastIndex - searchIndex;
-            for (int i = 0; i < countOfIteration; i++) {
-                currentNode = currentNode.prev;
-            }
-        } else {
+        Node currentNode = head;
 
-            currentNode = head;
-            while (currentIndex < searchIndex) {
-                currentNode = currentNode.next;
-                currentIndex++;
-            }
-
+        while (currentIndex < searchIndex) {
+            currentNode = currentNode.next;
+            currentIndex++;
         }
 
         return currentNode.value;
@@ -112,10 +97,17 @@ public class DoublyLinkedList {
     }
 
     public int[] toArr() {
-        List<Integer> result = new ArrayList<>();
-        forEach(result::add);
+        int[] array = new int[size];
 
-        return result.stream().mapToInt(e -> e).toArray();
+        int count = 0;
+        Node currentNode = head;
+        while (currentNode != null) {
+            array[count] = currentNode.value;
+            count++;
+            currentNode = currentNode.next;
+        }
+
+        return array;
     }
 
     private void checkIndex(int searchIndex) {

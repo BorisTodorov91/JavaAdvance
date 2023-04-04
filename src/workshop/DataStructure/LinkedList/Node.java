@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Boris T.
  */
 
-package workshop.LinkedList;
+package workshop.DataStructure.LinkedList;
 
 public class Node {
     public int value;

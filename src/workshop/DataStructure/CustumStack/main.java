@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Boris T.
  */
 
-package workshop.CustumStack;
+package workshop.DataStructure.CustumStack;
 
 import java.util.Scanner;
 
@@ -11,13 +11,13 @@ public class main {
         Scanner scanner = new Scanner(System.in);
 
         CustomStack customStack = new CustomStack();
-        customStack.push(12);
-        customStack.push(13);
-        customStack.push(15);
-        customStack.push(11);
-        customStack.push(10);
         customStack.push(1);
-        customStack.push(12333);
+        customStack.push(2);
+        customStack.push(3);
+        customStack.push(4);
+        customStack.push(5);
+        customStack.push(6);
+        customStack.push(7);
 
         customStack.forEach(System.out::println);
 

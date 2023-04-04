@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Boris T.
  */
 
-package workshop.smartArray;
+package workshop.DataStructure.smartArray;
 
 import java.util.function.Consumer;
 

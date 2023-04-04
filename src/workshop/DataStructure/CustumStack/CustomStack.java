@@ -8,7 +8,7 @@
  * Custom implementation of LIFO data structure
  * w
  */
-package workshop.CustumStack;
+package workshop.DataStructure.CustumStack;
 
 import java.util.function.Consumer;
 

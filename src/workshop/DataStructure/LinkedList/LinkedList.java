@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Boris T.
  */
 
-package workshop.LinkedList;
+package workshop.DataStructure.LinkedList;
 
 import java.util.function.Consumer;
 

@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Boris T.
  */
 
-package workshop.LinkedList;
+package workshop.DataStructure.LinkedList;
 
 public class main {
     public static void main(String[] args) {

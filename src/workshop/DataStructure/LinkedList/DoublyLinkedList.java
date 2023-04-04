@@ -2,11 +2,13 @@
  * Copyright (c) 2023 Boris T.
  */
 
-package workshop.LinkedList;
+package workshop.DataStructure.LinkedList;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
-public class LinkedListTail {
+public class DoublyLinkedList {
     private Node head;
     private Node tail;
     private int size;
@@ -17,6 +19,7 @@ public class LinkedListTail {
         //2. head = newNode
         if (!isEmpty()) {
             newNode.next = head;
+            head.prev = newNode;
         } else {
             tail = newNode;
         }
@@ -32,6 +35,7 @@ public class LinkedListTail {
             return;
         }
         Node newNode = new Node(element);
+        newNode.prev = tail;
         tail.next = newNode;
         tail = newNode;
         size++;
@@ -45,6 +49,10 @@ public class LinkedListTail {
         int result = head.value;
 
         size--;
+        head = head.next;
+        if (this.size > 1) {
+            head.prev = null;
+        }
         if (isEmpty()) {
             head = null;
             tail = null;
@@ -59,29 +67,34 @@ public class LinkedListTail {
             return removeFirst();
         }
 
-        Node currentNode = head;
-        while (currentNode.next.next != null) {
-            currentNode = currentNode.next;// стигаме до предпоследния ноде
-        }
-        int result = currentNode.next.value; // взимаме стойноста на последноя ноде
-        currentNode.next = null;
-        tail = currentNode;
-        size--;
+        int result = tail.value;
 
-        return result; // върщаме стойноста на премахнатияноде
-
-
+        tail = tail.prev;
+        tail.next = null;
+        this.size--;
+        return result;
     }
 
     public int get(int searchIndex) {
         checkIndex(searchIndex);
 
         int currentIndex = 0;
-        Node currentNode = head;
+        Node currentNode;
+        if (searchIndex > size / 2) {
+            currentNode = tail;
+            int lastIndex = size - 1;
+            int countOfIteration = lastIndex - searchIndex;
+            for (int i = 0; i < countOfIteration; i++) {
+                currentNode = currentNode.prev;
+            }
+        } else {
 
-        while (currentIndex < searchIndex) {
-            currentNode = currentNode.next;
-            currentIndex++;
+            currentNode = head;
+            while (currentIndex < searchIndex) {
+                currentNode = currentNode.next;
+                currentIndex++;
+            }
+
         }
 
         return currentNode.value;
@@ -97,17 +110,10 @@ public class LinkedListTail {
     }
 
     public int[] toArr() {
-        int[] array = new int[size];
+        List<Integer> result = new ArrayList<>();
+        forEach(result::add);
 
-        int count = 0;
-        Node currentNode = head;
-        while (currentNode != null) {
-            array[count] = currentNode.value;
-            count++;
-            currentNode = currentNode.next;
-        }
-
-        return array;
+        return result.stream().mapToInt(e -> e).toArray();
     }
 
     private void checkIndex(int searchIndex) {
